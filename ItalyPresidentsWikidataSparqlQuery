@@ -1,0 +1,20 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX v: <http://www.wikidata.org/prop/statement/>
+PREFIX q: <http://www.wikidata.org/prop/qualifier/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT ?item ?itemLabel ?dnLabel ?dmLabel ?imgUrl ?wife ?wifeLabel
+WHERE {
+  wd:Q38 p:P35/v:P35 ?item .
+  ?item wdt:P569 ?dnLabel .
+  ?item wdt:P18 ?imgUrl .
+  OPTIONAL {?item wdt:P570 ?dmLabel } 
+  OPTIONAL {?item wdt:P26  ?wife } 
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "it" .
+  }
+}
+ORDER BY ASC (?item)
+
